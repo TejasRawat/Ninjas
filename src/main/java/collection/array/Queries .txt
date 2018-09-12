@@ -1,0 +1,8 @@
+1. Search an element in a sorted and rotated array. 
+	The idea is to find the pivot point, divide the array in two sub-arrays and call binary search.
+	The main idea for finding pivot is – for a sorted (in increasing order) and pivoted array, pivot element is the only only element for which next element to it is smaller 
+	than it.Using above criteria and binary search methodology we can get pivot element in O(logn) time
+	
+2.Given an array A[] and a number x, check for pair in A[] with sum as x
+
+3. 
