@@ -8,14 +8,14 @@ public class TreeTester {
 		
 		BinarySearchTree tree = new BinarySearchTree();
 		
-		tree.insertInBST(15);
-		tree.insertInBST(5);
-		tree.insertInBST(10);
-		tree.insertInBST(8);
-		tree.insertInBST(7);
-		tree.insertInBST(4);
+		tree.insert(15);
+		tree.insert(5);
+		tree.insert(10);
+		tree.insert(8);
+		tree.insert(7);
+		tree.insert(4);
 		
-		System.out.println(tree.searchInBST(15));
+		System.out.println(tree.search(15));
 		
 		ArrayList<Integer> list= tree.getElementInBFSOrder();
 		System.out.println("BFS Order"+list);

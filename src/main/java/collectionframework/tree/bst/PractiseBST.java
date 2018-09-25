@@ -10,7 +10,7 @@ public class PractiseBST implements Tree {
 	private ArrayList<Integer> treeInList  = new ArrayList<Integer>();
 
 	@Override
-	public void insertInBST(int data) {
+	public void insert(int data) {
 	//	root = insertRecsInBST(data,root);
 		insertItrInBST(data);
 	}
@@ -59,7 +59,7 @@ public class PractiseBST implements Tree {
 	}
 
 	@Override
-	public boolean searchInBST(int num){
+	public boolean search(int num){
 		return searchItrInBST(root,num);
 	}
 
@@ -187,6 +187,11 @@ public class PractiseBST implements Tree {
 		return 0;
 	}
 
+	@Override
+	public int getHeight() {
+		return 0;
+	}
+
 	public Node getRoot() {
 		return root;
 	}
@@ -198,20 +203,20 @@ public class PractiseBST implements Tree {
 	public static void main(String args[]) {
 
 		PractiseBST tree = new PractiseBST();
-		tree.insertInBST(4);
-		tree.insertInBST(5);
-		tree.insertInBST(2);
-		tree.insertInBST(3);
-		tree.insertInBST(6);
-		tree.insertInBST(6);
-		tree.insertInBST(12);
-		tree.insertInBST(23);
-		tree.insertInBST(13);
-		tree.insertInBST(1);
-		tree.insertInBST(7);
-		tree.insertInBST(223);
-		tree.insertInBST(14);
-		tree.insertInBST(25);
+		tree.insert(4);
+		tree.insert(5);
+		tree.insert(2);
+		tree.insert(3);
+		tree.insert(6);
+		tree.insert(6);
+		tree.insert(12);
+		tree.insert(23);
+		tree.insert(13);
+		tree.insert(1);
+		tree.insert(7);
+		tree.insert(223);
+		tree.insert(14);
+		tree.insert(25);
 		
 		System.out.println("Pre Order");
 		System.out.println(tree.getElementInPreOrder());

@@ -249,7 +249,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 
 		else if (index == 0) {
 			if (front == null) {
-				throw new NullPointerException("list" + front);
+				throw new NullPointerException("linkedlist" + front);
 			} else if (front == rear) {
 				front = null;
 				rear = null;

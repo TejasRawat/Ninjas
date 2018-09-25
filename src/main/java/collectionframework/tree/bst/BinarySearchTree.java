@@ -9,324 +9,313 @@ import java.util.Queue;
  */
 public class BinarySearchTree implements Tree {
 
-	Node root = null;
+    Node root = null;
+
+    ArrayList<Integer> listPreOrder = new ArrayList<Integer>();
+    ArrayList<Integer> listInOrder = new ArrayList<Integer>();
+    ArrayList<Integer> listPostOrder = new ArrayList<Integer>();
+
+    /**
+     * @param data
+     */
+    @Override
+    public void insert(int data) {
+        root = insertInBST(root, data);
+    }
+
+    /**
+     * @param num
+     * @return
+     */
+    @Override
+    public boolean search(int num) {
+        return searchInBST(root, num);
+    }
+
+    /**
+     *
+     */
+    @Override
+    public ArrayList<Integer> getElementInBFSOrder() {
+
+        ArrayList<Integer> list = new ArrayList<Integer>();
+
+        if (root == null) {
+            System.err.println("Empty Tree");
+        } else {
+
+            Queue<Node> queue = new LinkedList<Node>();
+            queue.add(root);
+
+            while (!queue.isEmpty()) {
+
+                Node currentNode = queue.peek();
+                list.add(currentNode.data);
+
+                if (currentNode.left != null) {
+                    queue.add(currentNode.left);
+                }
+                if (currentNode.right != null) {
+                    queue.add(currentNode.right);
+                }
+                queue.remove();
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public ArrayList<Integer> getElementInPreOrder() {
+        listPreOrder.clear();
+        getPreOrder(root);
+        return this.listPreOrder;
+    }
+
+
+    @Override
+    public ArrayList<Integer> getElementInInOrder() {
+        listInOrder.clear();
+        getInOrder(root);
+        return listInOrder;
+    }
+
+    @Override
+    public ArrayList<Integer> getElementInPostOrder() {
+        listPostOrder.clear();
+        getPostOrder(root);
+        return listPostOrder;
+    }
+
+    /**
+     * @param root
+     * @param data
+     * @return
+     */
+    private Node insertInBST(Node root, int data) {
+
+        if (root == null) {
+            root = getNewNode(data);
+        } else if (data <= root.data) {
+            root.left = insertInBST(root.left, data);
+        } else {
+            root.right = insertInBST(root.right, data);
+        }
+
+        return root;
+    }
+
+
+
+
+    /**
+     * Insert the element in a BST non recursive manner
+     *
+     * @param num
+     */
+    public void insertItrInBST(int num) {
+
+        Node temp = root, parent = root;
+
+        if (root == null) {
+            root = getNewNode(num);
+        } else {
+            while (temp != null) {
+                if (num <= temp.data) {
+                    parent = temp;
+                    temp = temp.left;
+                } else {
+                    parent = temp;
+                    temp = temp.right;
+                }
+            }
+
+            Node newNode = getNewNode(num);
+            if (num <= parent.data) {
+                parent.left = newNode;
+            } else {
+                parent.right = newNode;
+            }
+        }
+    }
+
+    /*
+     *
+     */
+    private Node getNewNode(int data) {
+
+        Node temp = new Node();
+        temp.data = data;
+        temp.left = null;
+        temp.right = null;
+
+        return temp;
+    }
+
+
+    /**
+     * @param root
+     * @param num
+     * @return
+     */
+    private boolean searchInBST(Node root, int num) {
+
+        boolean flag = false;
+
+        if (root == null) {
+            return flag;
 
-	ArrayList<Integer> listPreOrder = new ArrayList<Integer>();
-	ArrayList<Integer> listInOrder = new ArrayList<Integer>();
-	ArrayList<Integer> listPostOrder = new ArrayList<Integer>();
+        } else if (root.data == num) {
+            flag = true;
+            return flag;
 
-	/**
-	 * @param data
-	 */
-	@Override
-	public void insertInBST(int data){
-		root = insertInBST(root,data);
-	}
+        } else if (root.data < num) {
 
-	/**
-	 *
-	 * @param num
-	 * @return
-	 */
-	@Override
-	public boolean searchInBST(int num){
-		return searchInBST(root,num);
-	}
+            flag = searchInBST(root.right, num);
+        } else {
 
-	/**
-	 *
-	 */
-	@Override
-	public ArrayList<Integer> getElementInBFSOrder() {
-
-		ArrayList<Integer> list = new ArrayList<Integer>();
-
-		if(root == null){
-			System.err.println("Empty Tree");
-		}else{
-
-			Queue<Node> queue = new LinkedList<Node>();
-			queue.add(root);
-
-			while(!queue.isEmpty()){
-
-				Node currentNode = queue.peek();
-				list.add(currentNode.data);
-
-				if(currentNode.left != null){
-					queue.add(currentNode.left);
-				}if(currentNode.right != null){
-					queue.add(currentNode.right);
-				}
-				queue.remove();
-			}
-		}
-		return list;
-	}
-
-	@Override
-	public ArrayList<Integer> getElementInPreOrder() {
-
-		 listPreOrder.clear();
-
-		 getPreOrder(root);
-
-		 return this.listPreOrder;
-
-	}
-
-
-	@Override
-	public ArrayList<Integer> getElementInInOrder() {
-
-		listInOrder.clear();
-
-		getInOrder(root);
-
-		return listInOrder;
-	}
-
-	@Override
-	public ArrayList<Integer> getElementInPostOrder() {
-
-		listPostOrder.clear();
-
-		getPostOrder(root);
-
-		return listPostOrder;
-	}
-
-	/**
-	 *
-	 * @param root
-	 * @param data
-	 * @return
-	 */
-	private Node insertInBST(Node root, int data){
-
-		if(root == null ){
-			root = getNewNode(data);
-		}else if(data <= root.data){
-			root.left = insertInBST(root.left, data);
-		}else{
-			root.right = insertInBST(root.right, data);
-		}
-
-		return root;
-	}
-
-	/**
-	 * Insert the element in a BST non recursive manner
-	 *
-	 * @param num
-	 */
-	private void insertItrInBST(int num) {
-
-		Node temp = root, parent = root;
-
-		if (root == null) {
-			root = getNewNode(num);
-		} else {
-			temp = root;
-
-			while (temp != null) {
-				if (num <= root.data) {
-					parent = temp;
-					temp = temp.left;
-				} else {
-					parent = temp;
-					temp = temp.right;
-				}
-			}
-			Node newNode = getNewNode(num);
-			if (num <= parent.data) {
-				parent.left = newNode;
-			} else {
-				parent.right = newNode;
-			}
-		}
-	}
-
-	/*
-	 *
-	 */
-	private Node getNewNode(int data) {
-
-		Node temp = new Node();
-		temp.data    = data;
-		temp.left    = null;
-		temp.right   = null;
+            flag = searchInBST(root.left, num);
+        }
 
-		return temp;
-	}
+        return flag;
+    }
 
+    /**
+     * Search elements in a tree in non recursive manner
+     *
+     * @param root
+     * @param num
+     * @return
+     */
+    private boolean searchItrInBST(Node root, int num) {
+        Queue<Node> queue = new LinkedList<Node>();
+        queue.add(root);
 
+        while (!queue.isEmpty()) {
+            Node currntNode = queue.peek();
 
-	/**
-	 * @param root
-	 * @param num
-	 * @return
-	 */
-	private boolean searchInBST(Node root, int num) {
+            if (currntNode.data == num) {
+                return true;
+            }
+            if (currntNode.left != null) {
+                queue.add(currntNode.left);
+            }
+            if (currntNode.right != null) {
+                queue.add(currntNode.right);
+            }
+            queue.remove();
+        }
+        return false;
+    }
 
-		boolean flag = false;
 
-			if(root == null){
-				return flag;
+    /*
+     *
+     */
+    private void getPreOrder(Node root) {
 
-			}else if(root.data == num){
-				flag = true;
-				return flag;
 
-			}else if(root.data < num){
+        if (root == null) {
+            return;
+        }
 
-				flag = searchInBST(root.right,num);
-			}else{
+        listPreOrder.add(root.data);
 
-				flag = searchInBST(root.left,num);
-			}
+        getPreOrder(root.left);
+        getPreOrder(root.right);
 
-		return flag;
-	}
+    }
 
-	/**
-	 * Search elements in a tree in non recursive manner
-	 *
-	 * @param root
-	 * @param num
-	 * @return
-	 */
-	private boolean searchItrInBST(Node root, int num){
-		Queue<Node> queue = new LinkedList<Node>();
-		queue.add(root);
 
-		while(!queue.isEmpty()){
-			Node currntNode = queue.peek();
+    /*
+     *
+     */
+    private void getInOrder(Node root) {
 
-			if(currntNode.data == num){
-				return true;
-			}
-			if(currntNode.left != null){
-				queue.add(currntNode.left);
-			}
-			if(currntNode.right != null){
-				queue.add(currntNode.right);
-			}
-			queue.remove();
-		}
-		return false;
-	}
+        if (root == null) {
+            return;
+        }
 
+        getInOrder(root.left);
 
+        listInOrder.add(root.data);
 
-	/*
-	 *
-	 */
-	private void  getPreOrder(Node root) {
+        getInOrder(root.right);
 
+    }
 
-		if (root == null) {
-			return;
-		}
+    /*
+     *
+     */
+    private void getPostOrder(Node root) {
 
-		listPreOrder.add(root.data);
+        if (root == null) {
+            return;
+        }
 
-		getPreOrder(root.left);
-		getPreOrder(root.right);
+        getPostOrder(root.left);
+        getPostOrder(root.right);
+        listPostOrder.add(root.data);
 
-	}
+    }
 
+    @Override
+    public int findMin() {
 
-	/*
-	 *
-	 */
-	private void  getInOrder(Node root) {
+        int min = root.data;
 
-		if (root == null) {
-			return;
-		}
+        Node temp = root;
 
-		getInOrder(root.left);
+        while (temp.left != null) {
+            temp = temp.left;
+        }
+        min = temp.data;
 
-		listInOrder.add(root.data);
+        return min;
+    }
 
-		getInOrder(root.right);
+    @SuppressWarnings("unused")
+    private int findMin(Node root) {
 
-	}
+        int min = 0;
 
-	/*
-	 *
-	 */
-	private void  getPostOrder(Node root) {
+        if (root == null) {
+        } else if (root.left == null) {
+            min = root.data;
+        } else {
+            Node temp = root;
+            while (temp.left != null) {
+                temp = temp.left;
+            }
+            min = temp.data;
+        }
 
-		if (root == null) {
-			return;
-		}
+        return min;
 
-		getPostOrder(root.left);
-		getPostOrder(root.right);
-		listPostOrder.add(root.data);
+    }
 
-	}
+    @Override
+    public int findMax() {
 
-	@Override
-	public int findMin() {
+        int max = root.data;
 
-		int min = root.data ;
+        Node temp = root;
 
-		Node temp = root;
+        while (temp.right != null) {
+            temp = temp.right;
+        }
+        max = root.data;
 
-		while(temp.left != null){
-			temp = temp.left;
-		}
-		min = temp.data;
+        return max;
+    }
 
-		return min;
-	}
+    @Override
+    public void deleteNode(int data) {
 
-	@SuppressWarnings("unused")
-	private int findMin(Node root){
 
-		int min = 0;
+    }
 
-		if(root == null){
-		}else if(root.left == null){
-			min = root.data;
-		}else{
-			Node temp = root;
-			while(temp.left != null){
-				temp = temp.left;
-			}
-			min = temp.data;
-		}
-
-		return min;
-
-	}
-
-	@Override
-	public int findMax() {
-
-		int max = root.data;
-
-		Node temp = root;
-
-		while(temp.right != null){
-			temp = temp.right;
-		}
-		max = root.data;
-
-		return max;
-	}
-
-	@Override
-	public void deleteNode(int data) {
-
-
-	}
-
-	@SuppressWarnings("unused")
-	private Node deleteNode(Node root, int data){
+    @SuppressWarnings("unused")
+    private Node deleteNode(Node root, int data) {
 
 		/*if(root == null){
 			return root;
@@ -353,66 +342,84 @@ public class BinarySearchTree implements Tree {
 			}
 
 		}*/
-		return null;
-	}
+        return null;
+    }
 
 
-	@Override
-	public int getAncesterNode(int data){
+    @Override
+    public int getAncesterNode(int data) {
 
-		return getAncesterNode(root,data);
+        return getAncesterNode(root, data);
 
-	}
+    }
 
-	private int getAncesterNode(Node root, int value) {
+    private int getAncesterNode(Node root, int value) {
 
-		Node currentNode = searchElement(root, value);
+        Node currentNode = searchElement(root, value);
 
-		Node ansesterNode = root;
+        Node ansesterNode = root;
 
-		while (ansesterNode != currentNode) {
+        while (ansesterNode != currentNode) {
 
-			if (currentNode.data < ansesterNode.data) {
-				ansesterNode = ansesterNode.left;
-			}
+            if (currentNode.data < ansesterNode.data) {
+                ansesterNode = ansesterNode.left;
+            } else {
+                ansesterNode = ansesterNode.right;
+            }
 
-			else {
-				ansesterNode = ansesterNode.right;
-			}
+        }
 
-		}
+        return ansesterNode.data;
+    }
 
-		return ansesterNode.data;
-	}
+    private static Node searchElement(Node root, int element) {
+        Node current = null;
 
-	private static Node searchElement(Node root, int element) {
-		Node current = null;
+        if (root == null) {
+            System.out.println("Empty Root");
+        } else if (element == root.data) {
+            // current = root;
+            System.out.println("Number Also Found in BST");
+        } else if (element < root.data) {
+            current = searchElement(root.left, element);
+        } else {
+            current = searchElement(root.right, element);
+        }
+        return current;
+    }
 
-		if (root == null) {
-			System.out.println("Empty Root");
-		}	else if (element == root.data) {
-			// current = root;
-			System.out.println("Number Also Found in BST");
-		}else if (element < root.data) {
-			current = searchElement(root.left, element);
-		}else {
-			current = searchElement(root.right, element);
-		}
-		return current;
-	}
+    public boolean isBST(Node root, int minVal, int maxVal) {
+        if (root == null) {
+            return true;
+        }
+        if ((root.data > minVal) && (root.data < maxVal) && isBST(root.left, minVal, root.data)
+                && isBST(root.right, root.data, maxVal)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	public boolean isBST(Node root, int minVal, int maxVal){
-		if (root == null) {
-			return true;
-		}
-		if ((root.data > minVal) && (root.data < maxVal) && isBST(root.left, minVal, root.data)
-				&& isBST(root.right, root.data, maxVal)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
+    @Override
+    public int getHeight() {
+        return findHeight(root);
+    }
+
+    private int findHeight(Node root) {
+        if (root == null) {
+            return -1;
+        } else {
+            return maxOf(findHeight(root.left), findHeight(root.right)) + 1;
+        }
+    }
+
+    private int maxOf(int leftHeight, int rightHeight) {
+        if (leftHeight >= rightHeight) {
+            return leftHeight;
+        } else {
+            return rightHeight;
+        }
+    }
 }
 
 

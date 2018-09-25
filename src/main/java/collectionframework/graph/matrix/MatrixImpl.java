@@ -78,7 +78,7 @@ public class MatrixImpl implements Graph {
 				list.add(i);
 			}
 		}
-		//System.out.println(list);
+		//System.out.println(linkedlist);
 		return list;
 	}
 	

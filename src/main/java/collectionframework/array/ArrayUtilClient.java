@@ -20,8 +20,8 @@ public class ArrayUtilClient {
 		 */
 
 		/*
-		 * int pairArr []= {1,2,3,4,5,6}; ArrayList<Pair> list =
-		 * utilImpl.getAllPair(pairArr); for(Pair pair : list){
+		 * int pairArr []= {1,2,3,4,5,6}; ArrayList<Pair> linkedlist =
+		 * utilImpl.getAllPair(pairArr); for(Pair pair : linkedlist){
 		 * System.out.println(pair); }
 		 */
 

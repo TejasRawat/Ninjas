@@ -8,9 +8,9 @@ import java.util.ArrayList;
  */
 public interface Tree{
 	
-	public void insertInBST(int data);
+	public void insert(int data);
 	
-	public boolean searchInBST(int num);
+	public boolean search(int num);
 	
 	public ArrayList<Integer>getElementInBFSOrder();
 	
@@ -27,5 +27,6 @@ public interface Tree{
 	public void deleteNode(int data);
 	
 	public int getAncesterNode(int data);
-	
+
+	public int getHeight();
 }
