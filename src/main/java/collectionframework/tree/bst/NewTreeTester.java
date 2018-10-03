@@ -1,11 +1,9 @@
 package collectionframework.tree.bst;
 
-import java.util.*;
-
 public class NewTreeTester {
     public static void main(String args[]) {
 
-        BinarySearchTree bst = new BinarySearchTree();
+        BST bst = new BST();
 /*
         bst.insertItrInBST(1);
         bst.insertItrInBST(2);

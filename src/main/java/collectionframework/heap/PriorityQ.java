@@ -22,6 +22,7 @@ public class PriorityQ<Integer> extends AbstractQueue<Integer>
 
     @Override
     public boolean offer(Integer integer) {
+        // insert using max heap Code
         list.add(integer);
 
         int a[] = new int[list.size()];
@@ -84,6 +85,12 @@ public class PriorityQ<Integer> extends AbstractQueue<Integer>
         return null;
     }
 
+
+    @Override
+    public Integer poll() {
+        return null;
+    }
+
     @Override
     public Iterator<Integer> iterator() {
         return null;
@@ -118,12 +125,5 @@ public class PriorityQ<Integer> extends AbstractQueue<Integer>
     public int size() {
         return list.size();
     }
-
-
-    @Override
-    public Integer poll() {
-        return null;
-    }
-
 
 }

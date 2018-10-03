@@ -7,7 +7,7 @@ import java.util.Queue;
 /**
  * @author te303950
  */
-public class BinarySearchTree implements Tree {
+public class BST implements Tree {
 
     Node root = null;
 
