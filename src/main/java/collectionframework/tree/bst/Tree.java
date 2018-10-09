@@ -1,6 +1,6 @@
 package collectionframework.tree.bst;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * 
@@ -29,4 +29,6 @@ public interface Tree{
 	public int getAncesterNode(int data);
 
 	public int getHeight();
+
+	public List<Integer> getLeftView();
 }

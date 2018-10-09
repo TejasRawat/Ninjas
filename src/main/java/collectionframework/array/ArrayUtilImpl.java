@@ -175,6 +175,23 @@ public class ArrayUtilImpl implements ArrayUtil {
 		return temp;
 	}
 
+	@Override
+	public int[] rotateArray(int[] a, int time) {
+
+		for (int j = 0; j < time; j++) {
+			int lastElem = a[a.length - 1];
+			int swap = a[0];
+
+			for (int i = 0; i < a.length-1; i++) {
+				int temp = swap;
+				swap = a[i+1];
+				a[i+1] = temp;
+			}
+			a[0] = lastElem;
+		}
+		return a;
+	}
+
 	private int getSum(ArrayList<Integer> toupleList) {
 
 		int sum = 0;

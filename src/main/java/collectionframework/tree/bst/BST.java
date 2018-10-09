@@ -2,6 +2,7 @@ package collectionframework.tree.bst;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -403,6 +404,11 @@ public class BST implements Tree {
     @Override
     public int getHeight() {
         return findHeight(root);
+    }
+
+    @Override
+    public List<Integer> getLeftView() {
+        return null;
     }
 
     private int findHeight(Node root) {

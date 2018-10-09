@@ -32,5 +32,7 @@ public interface ArrayUtil {
 	public List<ArrayList<Integer>> getAllContgArray(ArrayList<Integer> data);
 	
 	public int getLargestSum(List<ArrayList<Integer>> list);
+
+	public int[] rotateArray(int a[],int time);
 	
 }

@@ -1,35 +1,31 @@
 package collectionframework.array;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 public class ArrayUtilClient {
-	public static void main(String args[]) {
+    public static void main(String args[]) {
 
-		ArrayUtilImpl utilImpl = new ArrayUtilImpl();
+        ArrayUtilImpl arrayUtil = new ArrayUtilImpl();
 
-		/*
-		 * int a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
-		 * 17, 18 }; int result = utilImpl.binarySearch(a, 0, a.length - 1, 14);
-		 * System.out.println(result);
-		 * 
-		 * int b[] = { 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 1, 2, 3, 4, 5, 6,
-		 * 7, 8, 9, 10, 11 }; int pivot = utilImpl.findPivot(b, 0, b.length -
-		 * 1); System.out.println(pivot);
-		 */
+        /*
+         * int a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+         * 17, 18 }; int result = utilImpl.binarySearch(a, 0, a.length - 1, 14);
+         * System.out.println(result);
+         *
+         * int b[] = { 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 1, 2, 3, 4, 5, 6,
+         * 7, 8, 9, 10, 11 }; int pivot = utilImpl.findPivot(b, 0, b.length -
+         * 1); System.out.println(pivot);
+         */
 
-		/*
-		 * int pairArr []= {1,2,3,4,5,6}; ArrayList<Pair> linkedlist =
-		 * utilImpl.getAllPair(pairArr); for(Pair pair : linkedlist){
-		 * System.out.println(pair); }
-		 */
+        /*
+         * int pairArr []= {1,2,3,4,5,6}; ArrayList<Pair> linkedlist =
+         * utilImpl.getAllPair(pairArr); for(Pair pair : linkedlist){
+         * System.out.println(pair); }
+         */
 
-		/*
-		 * int a[] = {-2, -3, 4, -1, -2, 1, 5, -3}; int largestSubArraySum =-
-		 * utilImpl.largetSumContgArray(a);
-		 * System.out.println(largestSubArraySum);
-		 */
+        /*
+         * int a[] = {-2, -3, 4, -1, -2, 1, 5, -3}; int largestSubArraySum =-
+         * utilImpl.largetSumContgArray(a);
+         * System.out.println(largestSubArraySum);
+         */
 
 		/*int a[] = { 2, 7, 4, 1, 5, 3 };
 		int sorted[] = utilImpl.bubbleSort(a);
@@ -44,7 +40,7 @@ public class ArrayUtilClient {
 			System.out.print(","+i);
 		}*/
 		
-		ArrayList<Integer> list = new ArrayList<>();
+	/*	ArrayList<Integer> list = new ArrayList<>();
 		list.add(-1);
 		list.add(-2);
 		list.add(-11);
@@ -63,7 +59,13 @@ public class ArrayUtilClient {
 			}
 		}
 		
-		System.out.println("MAX SUM "+utilImpl.getLargestSum(dataList));
-		
-	}
+		System.out.println("MAX SUM "+utilImpl.getLargestSum(dataList));*/
+
+
+        int a[] = {1, 2, 3, 4};
+
+        arrayUtil.rotateArray(a, 2);
+		System.out.print(a);
+
+    }
 }

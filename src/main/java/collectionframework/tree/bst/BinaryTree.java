@@ -1,26 +1,24 @@
 package collectionframework.tree.bst;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BinaryTree implements Tree {
 
     Node node = null;
-    private ArrayList<Integer> preOrderList ;
-    private ArrayList<Integer> inOrderList ;
-    private ArrayList<Integer> postOrderList ;
+    private ArrayList<Integer> preOrderList;
+    private ArrayList<Integer> inOrderList;
+    private ArrayList<Integer> postOrderList;
 
 
     @Override
     public void insert(int data) {
 
 
-
     }
 
     @Override
     public boolean search(int num) {
-
-
 
 
         return false;
@@ -35,7 +33,6 @@ public class BinaryTree implements Tree {
 
     @Override
     public ArrayList<Integer> getElementInPreOrder() {
-
 
 
         return null;
@@ -66,8 +63,6 @@ public class BinaryTree implements Tree {
     public int findMax() {
 
 
-
-
         return 0;
     }
 
@@ -84,5 +79,10 @@ public class BinaryTree implements Tree {
     @Override
     public int getHeight() {
         return 0;
+    }
+
+    @Override
+    public List<Integer> getLeftView() {
+        return null;
     }
 }

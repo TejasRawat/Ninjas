@@ -9,6 +9,85 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 	private Node<E> rear = null;
 	private int size = 0;
 
+
+	public Node reverse(Node front,int k) {
+		Node current = front;
+		Node next = null;
+		Node prev = null;
+
+		int count = 0;
+
+		/* Reverse first k nodes of linked list */
+		while (count < k && current != null) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+			count++;
+		}
+
+       /* next is now a pointer to (k+1)th node
+          Recursively call for the list starting from current.
+          And make rest of the list as next of first node */
+		if (next != null)
+			front.next = reverse(next,k);
+
+		// prev is now head of input list
+		return prev;
+	}
+
+	public void rotate(int k) {
+		Node temp;
+		for (int i = 1; i <= k; i++) {
+			temp = front;
+			while (null != temp.next.next) {
+				temp = temp.next;
+			}
+			temp.next.next = front;
+			front = temp.next;
+			temp.next = null;
+
+
+			System.out.println(" " + i);
+			Node tempNode = front;
+			while (tempNode != null) {
+				System.out.print(" " + tempNode.data);
+				tempNode = tempNode.next;
+			}
+			System.out.println();
+		}
+	}
+
+	public E getMiddle() {
+		return getMiddle(front);
+	}
+
+
+	public E getMiddle(Node head){
+		if(head == null ){
+			return null;
+		}
+
+		if(head.next == null){
+			return (E) head.data;
+		}
+
+		Node doubleStep  = head;
+		Node singleStep  = head;
+
+		while (
+				doubleStep.next != null &&
+						doubleStep.next.next != null) {
+			doubleStep = doubleStep.next.next;
+			singleStep = singleStep.next;
+		}
+
+		return (E) singleStep.data;
+
+	}
+
+
+
 	@Override
 	public boolean add(E e) {
 
@@ -481,8 +560,13 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
 
+	public Node<E> getFront() {
+		return front;
+	}
 
+	public void setFront(Node<E> front) {
+		this.front = front;
+	}
 }
