@@ -2,24 +2,24 @@ package collectionframework.tree.bst;
 
 public class NewTreeTester {
     public static void main(String args[]) {
-
-        BST bst = new BST();
 /*
-        bst.insertItrInBST(1);
-        bst.insertItrInBST(2);
-        bst.insertItrInBST(3);*/
+        BSTV1 BSTV1 = new BSTV1();
+*//*
+        BSTV1.insertItrInBST(1);
+        BSTV1.insertItrInBST(2);
+        BSTV1.insertItrInBST(3);*//*
 
-        bst.insert(4);
-        bst.insert(3);
-        bst.insert(9);
-        bst.insert(6);
-        bst.insert(7);
-        bst.insert(6);
+        BSTV1.insert(4);
+        BSTV1.insert(3);
+        BSTV1.insert(9);
+        BSTV1.insert(6);
+        BSTV1.insert(7);
+        BSTV1.insert(6);
 
-        bst.getHeight();
+        BSTV1.getHeight();
 
 
-      //  Arrays.parallelSort();
+      //  Arrays.parallelSort();*/
 
     }
 }

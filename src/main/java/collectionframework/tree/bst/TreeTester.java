@@ -6,7 +6,7 @@ public class TreeTester {
 	public static void main(String[] args) {
 			
 		
-		BST tree = new BST();
+		/*BSTV1 tree = new BSTV1();
 		
 		tree.insert(15);
 		tree.insert(5);
@@ -32,7 +32,7 @@ public class TreeTester {
 		
 		System.out.println("Min element in Tree : "+tree.findMin());
 		System.out.println("Min element in Tree : "+tree.findMax());
-		
+		*/
 		
 		
 	}

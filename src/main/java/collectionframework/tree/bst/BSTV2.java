@@ -55,7 +55,7 @@ public class BSTV2 implements Tree {
         List<LevelAndData> elements = new LinkedList<LevelAndData>();
 
         LinkedList<LevelAndData> list = new LinkedList<LevelAndData>();
-        list.add(new LevelAndData(root,1));
+        list.add(new LevelAndData(root, 1));
 
         int level = 1;
 
@@ -70,27 +70,44 @@ public class BSTV2 implements Tree {
             System.out.println(elements);
 
             if (null != poll.getNode().left) {
-                list.add(new LevelAndData(poll.getNode().left,poll.getLevel()+1));
+                list.add(new LevelAndData(poll.getNode().left, poll.getLevel() + 1));
             }
             if (null != poll.getNode().right) {
-                list.add(new LevelAndData(poll.getNode().right,poll.getLevel()+1));
+                list.add(new LevelAndData(poll.getNode().right, poll.getLevel() + 1));
             }
-            
+
         }
 
-        Map<Integer,Integer> map = new HashMap<Integer,Integer>();
-        for(LevelAndData  levelAndData : elements){
-            if(!map.containsKey(levelAndData.getLevel())){
-                map.put(levelAndData.getLevel(),levelAndData.getNode().data);
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (LevelAndData levelAndData : elements) {
+            if (!map.containsKey(levelAndData.getLevel())) {
+                map.put(levelAndData.getLevel(), levelAndData.getNode().data);
             }
         }
 
         return null;
     }
 
+    @Override
+    public int findMin() {
+        Node temp = root;
+        while (null != temp.left) {
+            temp = temp.left;
+        }
+        return temp.data;
+    }
 
     @Override
-    public ArrayList<Integer> getElementInBFSOrder() {
+    public int findMax() {
+        Node temp = root;
+        while (null != temp.right) {
+            temp = temp.right;
+        }
+        return temp.data;
+    }
+
+    @Override
+    public List<Integer> getElementInBFSOrder() {
         if (root == null) {
             return null;
         }
@@ -115,28 +132,94 @@ public class BSTV2 implements Tree {
     }
 
     @Override
-    public ArrayList<Integer> getElementInPreOrder() {
-        return null;
+    public int getHeight() {
+        return findHeight(root);
+    }
+
+    private int findHeight(Node root) {
+        if (root == null) {
+            return -1;
+        } else {
+            return maxOf(findHeight(root.left), findHeight(root.right)) + 1;
+        }
+    }
+
+    private int maxOf(int leftHeight, int rightHeight) {
+        if (leftHeight >= rightHeight) {
+            return leftHeight;
+        } else {
+            return rightHeight;
+        }
     }
 
     @Override
-    public ArrayList<Integer> getElementInInOrder() {
-        return null;
+    public List<Integer> getElementInPreOrder() {
+        List<Integer> list = new ArrayList<Integer>();
+        preOrder(root,list);
+        return list;
+    }
+
+    private void preOrder(Node root, List<Integer> list) {
+        if(null == root){
+            return;
+        }
+        list.add(root.data);
+        inOrder(root.left,list);
+        inOrder(root.right,list);
     }
 
     @Override
-    public ArrayList<Integer> getElementInPostOrder() {
-        return null;
+    public List<Integer> getElementInInOrder() {
+        List<Integer> list = new ArrayList<Integer>();
+        inOrder(root,list);
+        return list;
+    }
+
+    private void inOrder(Node root, List<Integer> list) {
+        if(null == root){
+            return;
+        }
+        inOrder(root.left,list);
+        list.add(root.data);
+        inOrder(root.right,list);
     }
 
     @Override
-    public int findMin() {
-        return 0;
+    public List<Integer> getElementInPostOrder() {
+        List<Integer> list = new ArrayList<Integer>();
+        postOrder(root,list);
+        return list;
+    }
+
+    private void postOrder(Node root, List<Integer> list) {
+        if(null == root){
+            return;
+        }
+        inOrder(root.left,list);
+        inOrder(root.right,list);
+        list.add(root.data);
     }
 
     @Override
-    public int findMax() {
-        return 0;
+    public int getLowestCommonAncestor(int n1, int n2) {
+        Node lcaNode = getLCA(root,n1,n2);
+        return lcaNode.data;
+    }
+
+    private Node getLCA(Node root, int n1, int n2) {
+        if(Objects.isNull(root)){
+            return null;
+        }
+        if(root.data < maxOf(n1,n2)){
+            return getLCA(root.left,n1,n2);
+        }
+        if(root.data > minOf(n1,n2)){
+            return getLCA(root.right,n1,n2);
+        }
+        return root;
+    }
+    private int minOf(int n1, int n2) {
+        return n1 < n2 ? n1 : n2;
     }
 
     @Override
@@ -149,10 +232,6 @@ public class BSTV2 implements Tree {
         return 0;
     }
 
-    @Override
-    public int getHeight() {
-        return 0;
-    }
 
 
 }

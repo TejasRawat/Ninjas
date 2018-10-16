@@ -8,34 +8,34 @@ import java.util.Queue;
 /**
  * @author te303950
  */
-public class BST implements Tree {
+public class BSTV1 {
 
-    Node root = null;
+    /*Node root = null;
 
     ArrayList<Integer> listPreOrder = new ArrayList<Integer>();
     ArrayList<Integer> listInOrder = new ArrayList<Integer>();
     ArrayList<Integer> listPostOrder = new ArrayList<Integer>();
 
-    /**
+    *//**
      * @param data
-     */
+     *//*
     @Override
     public void insert(int data) {
         root = insertInBST(root, data);
     }
 
-    /**
+    *//**
      * @param num
      * @return
-     */
+     *//*
     @Override
     public boolean search(int num) {
         return searchInBST(root, num);
     }
 
-    /**
+    *//**
      *
-     */
+     *//*
     @Override
     public ArrayList<Integer> getElementInBFSOrder() {
 
@@ -87,11 +87,11 @@ public class BST implements Tree {
         return listPostOrder;
     }
 
-    /**
+    *//**
      * @param root
      * @param data
      * @return
-     */
+     *//*
     private Node insertInBST(Node root, int data) {
 
         if (root == null) {
@@ -108,11 +108,11 @@ public class BST implements Tree {
 
 
 
-    /**
-     * Insert the element in a BST non recursive manner
+    *//**
+     * Insert the element in a BSTV1 non recursive manner
      *
      * @param num
-     */
+     *//*
     public void insertItrInBST(int num) {
 
         Node temp = root, parent = root;
@@ -139,9 +139,9 @@ public class BST implements Tree {
         }
     }
 
-    /*
+    *//*
      *
-     */
+     *//*
     private Node getNewNode(int data) {
 
         Node temp = new Node();
@@ -153,11 +153,11 @@ public class BST implements Tree {
     }
 
 
-    /**
+    *//**
      * @param root
      * @param num
      * @return
-     */
+     *//*
     private boolean searchInBST(Node root, int num) {
 
         boolean flag = false;
@@ -180,13 +180,13 @@ public class BST implements Tree {
         return flag;
     }
 
-    /**
+    *//**
      * Search elements in a tree in non recursive manner
      *
      * @param root
      * @param num
      * @return
-     */
+     *//*
     private boolean searchItrInBST(Node root, int num) {
         Queue<Node> queue = new LinkedList<Node>();
         queue.add(root);
@@ -209,9 +209,9 @@ public class BST implements Tree {
     }
 
 
-    /*
+    *//*
      *
-     */
+     *//*
     private void getPreOrder(Node root) {
 
 
@@ -227,9 +227,9 @@ public class BST implements Tree {
     }
 
 
-    /*
+    *//*
      *
-     */
+     *//*
     private void getInOrder(Node root) {
 
         if (root == null) {
@@ -244,9 +244,9 @@ public class BST implements Tree {
 
     }
 
-    /*
+    *//*
      *
-     */
+     *//*
     private void getPostOrder(Node root) {
 
         if (root == null) {
@@ -318,7 +318,7 @@ public class BST implements Tree {
     @SuppressWarnings("unused")
     private Node deleteNode(Node root, int data) {
 
-		/*if(root == null){
+		*//*if(root == null){
 			return root;
 		}else if(data < root.data){
 			root.left = deleteNode(root.left, data);
@@ -342,7 +342,7 @@ public class BST implements Tree {
 				Node temp = findMin(root.right);
 			}
 
-		}*/
+		}*//*
         return null;
     }
 
@@ -380,7 +380,7 @@ public class BST implements Tree {
             System.out.println("Empty Root");
         } else if (element == root.data) {
             // current = root;
-            System.out.println("Number Also Found in BST");
+            System.out.println("Number Also Found in BSTV1");
         } else if (element < root.data) {
             current = searchElement(root.left, element);
         } else {
@@ -425,7 +425,7 @@ public class BST implements Tree {
         } else {
             return rightHeight;
         }
-    }
+    }*/
 }
 
 

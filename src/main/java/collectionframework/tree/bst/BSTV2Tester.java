@@ -21,6 +21,7 @@ public class BSTV2Tester {
         // left view
         List<Integer> leftView = bstv2.getLeftView();
 
+        bstv2.getElementInInOrder();
 
     }
 }
