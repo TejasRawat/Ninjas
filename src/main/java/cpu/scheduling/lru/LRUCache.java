@@ -36,51 +36,73 @@ public class LRUCache {
         // Make the entry to front
         Entry entry = cache.get(key);
 
-        if (capacity == 1) {
+        if (cache.size() <= 1) {
             // Dont do anythung
-        } else if (capacity == 2) {
+        } else if (cache.size() == 2) {
             entry.setNext(front);
             front.setPrev(entry);
             entry.setPrev(null);
             front.setNext(null);
-
             rear = front;
-
             front = entry;
         } else {
             Entry temp = front;
-            while (temp.getNext() != entry) {
+            while (temp != null) {
+                if (temp.getNext() == entry) {
+                    if (entry.getNext() != null) {
+                        temp.setNext(entry.getNext());
+                        entry.getNext().setPrev(temp);
+                        entry.setPrev(null);
+                        entry.setNext(front);
+                        front.setPrev(entry);
+                        front = entry;
+                    }
+                }
                 temp = temp.getNext();
             }
-            temp.setNext(entry.getNext());
-            entry.getNext().setPrev(temp);
 
-            entry.setPrev(null);
-            entry.setNext(front);
-            front.setPrev(entry);
-            front = entry;
         }
     }
 
     public void put(int key, int value) {
-        Entry entry = new Entry(key,value,null,null);
-        if(cache.size() < capacity){
+        Entry entry = new Entry(key, value, null, null);
+        if (cache.size() < capacity) {
             addAtFront(entry);
-        }else {
-            removeAtLast();
-            addAtFront(entry);
+            cache.put(key, entry);
+        } else {
+            if (keyAlreadyPresent(key)) {
+                Entry data = cache.get(key);
+                data.setData(value);
+                reloadCache(key);
+            } else {
+                removeAtLast();
+                addAtFront(entry);
+                cache.put(key, entry);
+            }
         }
-        cache.put(key,entry);
+    }
+
+    private boolean keyAlreadyPresent(int key) {
+        return cache.containsKey(key);
     }
 
     private void removeAtLast() {
-        Entry temp = front;
-        while(temp.getNext() != rear){
-            temp = temp.getNext();
+        if (cache.size() == 0) {
+            return;
         }
-        temp.setNext(null);
-        cache.remove(rear.getKey());
-        rear = temp;
+        if (cache.size() == 1) {
+            cache.remove(rear.getKey());
+            front = null;
+            rear = null;
+        } else {
+            Entry temp = front;
+            while (temp.getNext() != rear) {
+                temp = temp.getNext();
+            }
+            temp.setNext(null);
+            cache.remove(rear.getKey());
+            rear = temp;
+        }
     }
 
     private void addAtFront(Entry entry) {
