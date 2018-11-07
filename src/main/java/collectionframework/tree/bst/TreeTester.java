@@ -1,7 +1,5 @@
 package collectionframework.tree.bst;
 
-import java.util.ArrayList;
-
 public class TreeTester {
 	public static void main(String[] args) {
 			

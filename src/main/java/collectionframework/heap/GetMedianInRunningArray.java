@@ -1,7 +1,6 @@
 package collectionframework.heap;
+
 import java.util.*;
-import java.lang.*;
-import java.io.*;
 
 public class GetMedianInRunningArray {
     public static void main(String args[]) {

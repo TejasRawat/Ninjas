@@ -1,6 +1,6 @@
 package collectionframework.tree.bst;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * 
