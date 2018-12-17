@@ -3,7 +3,7 @@ package concurrency.exercises.evenoddprint;
 public class OddEvenAppStart {
 	public static void main(String[] args) {
 
-		PrintNumber printNumber = new PrintNumber(100);
+		PrintNumber printNumber = new PrintNumber(20);
 		
 		PrintEvenThread printEvenThread = new PrintEvenThread(printNumber);
 		PrintOddThread printOddThread   = new PrintOddThread(printNumber);
@@ -11,8 +11,8 @@ public class OddEvenAppStart {
 		Thread evenThread = new Thread(printEvenThread,"even");
 		Thread oddThread  = new Thread(printOddThread,"odd");
 
-		evenThread.start();
 		oddThread.start();
-	
+		evenThread.start();
+
 	}
 }

@@ -55,7 +55,7 @@ public class GraphAdjListImpl implements Graph<Integer> {
     @Override
     public List<Integer> getDFS(Integer source) {
         List<Integer> dfsList = new ArrayList<>();
-        Stack<Integer> stack  = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
         int visited[] = new int[size];
         for (int i = 0; i < visited.length; i++) {
             visited[i] = 0;
@@ -66,18 +66,62 @@ public class GraphAdjListImpl implements Graph<Integer> {
             Integer unvisitedFirstNode = getUnvisitedFirstNode(stack.peek(), visited);
 
             if (unvisitedFirstNode.equals(Integer.MIN_VALUE)) {
-                addToDFSAndMarkVisited(dfsList,stack.peek(),visited);
+                addToDFSAndMarkVisited(dfsList, stack.peek(), visited);
                 stack.pop();
             } else {
-                addToDFSAndMarkVisited(dfsList,stack.peek(),visited);
+                addToDFSAndMarkVisited(dfsList, stack.peek(), visited);
                 stack.push(unvisitedFirstNode);
             }
         }
         return dfsList;
     }
 
+    @Override
+    public List<Integer> getFirstCycle(Integer source) {
+        Stack<Integer> stack = new Stack<>();
+        int visited[] = new int[size];
+        for (int i = 0; i < visited.length; i++) {
+            visited[i] = 0;
+        }
+        stack.push(source);
+        while (!stack.isEmpty()) {
+            Integer peek = stack.peek();
+            Integer integer = anyVisitedNodeReachble(stack, visited);
+            if(!integer.equals(Integer.MAX_VALUE)){
+                // loop exists
+            }else {
+                // Keep doing the DFS
+            }
+         /*   boolean isVisitedNodePresent = isVisitedNodePresent(stack,visited);
+            if(isVisitedNodePresent){
+                return new ArrayList<>(stack);
+            }else{
+                addToDFSAndMarkVisited(null, stack.peek(), visited);
+             //   stack.push(unvisitedFirstNode);
+            }*/
+        }
+        return null;
+    }
+
+    private Integer anyVisitedNodeReachble(Stack<Integer> stack, int[] visited) {
+        // TO DO
+        return Integer.MAX_VALUE;
+    }
+
+    private boolean isVisitedNodePresent(Stack<Integer> stack, int[] visited) {
+        Integer peek = stack.peek();
+        List<Integer> connectedNodes = map.get(peek);
+
+        for (int i = 0; i < visited.length; i++) {
+            if (visited[i] == 1 && connectedNodes.contains(i) && stack.contains(new Integer(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void addToDFSAndMarkVisited(List<Integer> dfsList, Integer peek, int[] visited) {
-        if(!dfsList.contains(peek)){
+        if (!CollectionUtils.isEmpty(dfsList) && !dfsList.contains(peek)) {
             dfsList.add(peek);
         }
         visited[peek] = 1;
