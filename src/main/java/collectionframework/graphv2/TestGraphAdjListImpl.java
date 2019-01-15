@@ -14,12 +14,12 @@ public class TestGraphAdjListImpl  {
         graph.addEdge(new Integer(3),new Integer(3));
 
 
-        List<Integer> bfs = graph.getBFS(new Integer(2));
+ //       List<Integer> bfs = graph.getBFS(new Integer(2));
 
         List<Integer> dfs = graph.getDFS(new Integer(2));
 
         System.out.println(dfs);
 
-        System.out.print(bfs);
+  //      System.out.print(bfs);
     }
 }

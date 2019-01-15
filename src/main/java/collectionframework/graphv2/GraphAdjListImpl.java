@@ -9,6 +9,8 @@ public class GraphAdjListImpl implements Graph<Integer> {
 
     private Map<Integer, List<Integer>> map;
     private int size;
+    private List<Integer> dfsView;
+    private static int MARK_VISITED = 1;
 
     public GraphAdjListImpl(int size) {
         map = new HashMap<>();
@@ -54,27 +56,67 @@ public class GraphAdjListImpl implements Graph<Integer> {
 
     @Override
     public List<Integer> getDFS(Integer source) {
-        List<Integer> dfsList = new ArrayList<>();
-        Stack<Integer> stack = new Stack<>();
-        int visited[] = new int[size];
+        /* Use for iterative calls
+           return  doIterativeDFS(source);
+        */
+        return getDFSOrderIterative(source);
+
+       /* int visited[] = new int[size];
         for (int i = 0; i < visited.length; i++) {
             visited[i] = 0;
         }
-        stack.push(source);
+        dfsView = new LinkedList<>();
 
-        while (!stack.isEmpty()) {
-            Integer unvisitedFirstNode = getUnvisitedFirstNode(stack.peek(), visited);
+        doDFS(source, visited);
 
-            if (unvisitedFirstNode.equals(Integer.MIN_VALUE)) {
-                addToDFSAndMarkVisited(dfsList, stack.peek(), visited);
-                stack.pop();
-            } else {
-                addToDFSAndMarkVisited(dfsList, stack.peek(), visited);
-                stack.push(unvisitedFirstNode);
+        return dfsView;*/
+    }
+
+    private void doDFS(Integer source, int[] visited) {
+        visited[source] = 1;
+
+        dfsView.add(source);
+        List<Integer> linkedNodes = map.get(source);
+        Iterator<Integer> iterator = linkedNodes.iterator();
+
+        while (iterator.hasNext()) {
+            Integer next = iterator.next();
+            if (visited[next] == 0) {
+                doDFS(next, visited);
             }
         }
-        return dfsList;
     }
+
+    public List<Integer> getDFSOrderIterative(Integer source) {
+        Stack<Integer> traversedVertices = new Stack<>();
+        List<Integer> dfsOrderList = new ArrayList<>();
+
+        int visitedVertices[] = initialiseVisitedVertices(size);
+        traversedVertices.push(source);
+
+        while (!traversedVertices.isEmpty()) {
+            Integer topVertex = traversedVertices.pop();
+            dfsOrderList.add(topVertex);
+            visitedVertices[topVertex] = MARK_VISITED;
+
+            final List<Integer> connectedVertices = map.get(topVertex);
+            for (Integer vertex : connectedVertices) {
+                if (visitedVertices[vertex] == 0) {
+                    traversedVertices.push(vertex);
+                }
+            }
+        }
+        return dfsOrderList;
+    }
+
+    private int[] initialiseVisitedVertices(int size) {
+        int[] visitedVertices = new int[size];
+        for (int i = 0; i < size; i++) {
+            visitedVertices[i] = 0;
+        }
+        return visitedVertices;
+    }
+
 
     @Override
     public List<Integer> getFirstCycle(Integer source) {
@@ -87,9 +129,9 @@ public class GraphAdjListImpl implements Graph<Integer> {
         while (!stack.isEmpty()) {
             Integer peek = stack.peek();
             Integer integer = anyVisitedNodeReachble(stack, visited);
-            if(!integer.equals(Integer.MAX_VALUE)){
+            if (!integer.equals(Integer.MAX_VALUE)) {
                 // loop exists
-            }else {
+            } else {
                 // Keep doing the DFS
             }
          /*   boolean isVisitedNodePresent = isVisitedNodePresent(stack,visited);
@@ -103,39 +145,102 @@ public class GraphAdjListImpl implements Graph<Integer> {
         return null;
     }
 
+    @Override
+    public boolean isCycle() {
+        boolean[] visited = new boolean[size];
+        boolean[] recStack = new boolean[size];
+
+        for (int i = 0; i < size; i++)
+            if (isCyclicUtil(i, visited, recStack))
+                return true;
+
+        return false;
+    }
+
+    @Override
+    public List<Integer> topologicalSort() {
+        Stack stack = new Stack();
+
+        boolean visited[] = new boolean[size];
+        for (int i = 0; i < size; i++) {
+            visited[i] = false;
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (visited[i] == false)
+                topologicalSortUtil(i, visited, stack);
+        }
+
+        return stack;
+    }
+
+    @Override
+    public Map<Integer, Integer> getAlllNodeShortestPath(int[][] graph, int source) {
+        Map<Integer, Integer> disatanceMap = new HashMap<>();
+        boolean visitedNodes[] = new boolean[graph.length];
+        visitedNodes[source] = true;
+
+        List<Integer> data = new ArrayList<>();
+        for (int i = 0; i < graph.length; i++) {
+            data.add(new Integer(graph[source][i]));
+        }
+
+        for (int i = 0; i < graph.length - 1; i++) {
+            int shortestUnvisited = getShortestUnvisited(data, visitedNodes);
+            disatanceMap.put(shortestUnvisited, data.get(shortestUnvisited));
+
+            relaxNodes(data, shortestUnvisited);
+        }
+
+        return disatanceMap;
+    }
+
+    private void relaxNodes(List<Integer> data, int shortestUnvisited) {
+    }
+
+    private int getShortestUnvisited(List<Integer> data, boolean[] visitedNodes) {
+        return 0;
+    }
+
+    private void topologicalSortUtil(int v, boolean[] visited, Stack stack) {
+        visited[v] = true;
+        Integer i;
+
+        Iterator<Integer> it = map.get(v).iterator();
+        while (it.hasNext()) {
+            i = it.next();
+            if (!visited[i])
+                topologicalSortUtil(i, visited, stack);
+        }
+        stack.push(new Integer(v));
+    }
+
+    private boolean isCyclicUtil(int i, boolean[] visited, boolean[] recStack) {
+        if (recStack[i])
+            return true;
+
+        if (visited[i])
+            return false;
+
+        visited[i] = true;
+
+        recStack[i] = true;
+        List<Integer> children = map.get(i);
+
+        for (Integer c : children)
+            if (isCyclicUtil(c, visited, recStack))
+                return true;
+
+        recStack[i] = false;
+
+        return false;
+    }
+
     private Integer anyVisitedNodeReachble(Stack<Integer> stack, int[] visited) {
         // TO DO
         return Integer.MAX_VALUE;
     }
 
-    private boolean isVisitedNodePresent(Stack<Integer> stack, int[] visited) {
-        Integer peek = stack.peek();
-        List<Integer> connectedNodes = map.get(peek);
-
-        for (int i = 0; i < visited.length; i++) {
-            if (visited[i] == 1 && connectedNodes.contains(i) && stack.contains(new Integer(i))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void addToDFSAndMarkVisited(List<Integer> dfsList, Integer peek, int[] visited) {
-        if (!CollectionUtils.isEmpty(dfsList) && !dfsList.contains(peek)) {
-            dfsList.add(peek);
-        }
-        visited[peek] = 1;
-    }
-
-    private Integer getUnvisitedFirstNode(Integer source, int[] visited) {
-        List<Integer> integers = map.get(source);
-        for (Integer node : integers) {
-            if (visited[node] == 0 && !source.equals(node)) {
-                return node;
-            }
-        }
-        return Integer.MIN_VALUE;
-    }
 
     public Map<Integer, List<Integer>> getMap() {
         return map;
