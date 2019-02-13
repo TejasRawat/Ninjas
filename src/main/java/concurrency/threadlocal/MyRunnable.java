@@ -2,15 +2,18 @@ package concurrency.threadlocal;
 
 public class MyRunnable implements Runnable {
 
-    private ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>();
+    private static final ThreadLocal<String> threadLocal =
+            new ThreadLocal<String>() {
+                @Override
+                protected String initialValue() {
+                    return "Apple";
+                }
+            };
 
     @Override
     public void run() {
-        threadLocal.set((int) (Math.random() * 100D));
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
+        threadLocal.set(threadLocal.get() + "Mango");
         System.out.println(threadLocal.get());
     }
+
 }

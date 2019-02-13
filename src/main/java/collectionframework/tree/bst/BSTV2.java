@@ -206,7 +206,8 @@ public class BSTV2 implements Tree {
         return lcaNode.data;
     }
 
-    private Node getLCA(Node root, int n1, int n2) {
+    private Node
+    getLCA(Node root, int n1, int n2) {
         if(Objects.isNull(root)){
             return null;
         }

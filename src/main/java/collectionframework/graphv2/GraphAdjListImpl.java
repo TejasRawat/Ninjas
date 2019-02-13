@@ -96,8 +96,11 @@ public class GraphAdjListImpl implements Graph<Integer> {
 
         while (!traversedVertices.isEmpty()) {
             Integer topVertex = traversedVertices.pop();
-            dfsOrderList.add(topVertex);
-            visitedVertices[topVertex] = MARK_VISITED;
+
+            if(visitedVertices[topVertex] == 0) {
+                dfsOrderList.add(topVertex);
+                visitedVertices[topVertex] = MARK_VISITED;
+            }
 
             final List<Integer> connectedVertices = map.get(topVertex);
             for (Integer vertex : connectedVertices) {
