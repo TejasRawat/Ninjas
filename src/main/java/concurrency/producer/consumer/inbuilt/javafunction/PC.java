@@ -16,11 +16,11 @@ public class PC {
 
 			// and waits till some other method invokes notify().
 			System.out.println("Resumed");
+			// Sleeps for some time and waits for a key press. After key
+			// is pressed, it notifies produce().
+
 		}
 	}
-
-	// Sleeps for some time and waits for a key press. After key
-	// is pressed, it notifies produce().
 	public void consume() throws InterruptedException {
 		// this makes the produce thread to run first.
 		Thread.sleep(1000);

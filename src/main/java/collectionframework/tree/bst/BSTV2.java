@@ -168,6 +168,22 @@ public class BSTV2 implements Tree {
         inOrder(root.right,list);
     }
 
+    private int inOrder(Node root, int idx, int num) {
+        if (null == root) {
+            return -1;
+        }
+
+        idx = 1 + inOrder(root.left, idx, num);
+
+        if (root.data == num) {
+            return idx;
+        }
+
+        idx = inOrder(root.right, idx + 1, num);
+
+        return -1;
+    }
+
     @Override
     public List<Integer> getElementInInOrder() {
         List<Integer> list = new ArrayList<Integer>();
