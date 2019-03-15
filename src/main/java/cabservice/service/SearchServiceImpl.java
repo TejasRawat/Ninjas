@@ -1,10 +1,10 @@
-package concurrency.cabsearchservice.service;
+package cabservice.service;
 
-import concurrency.cabsearchservice.dto.SearchRequest;
-import concurrency.cabsearchservice.dto.SearchRespone;
-import concurrency.cabsearchservice.tasks.ConnectorTask;
-import concurrency.cabsearchservice.util.ConnectorUtil;
-import concurrency.cabsearchservice.util.ConnectorUtilImpl;
+import cabservice.dto.SearchRequest;
+import cabservice.dto.SearchRespone;
+import cabservice.tasks.ConnectorTask;
+import cabservice.util.ConnectorUtil;
+import cabservice.util.ConnectorUtilImpl;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

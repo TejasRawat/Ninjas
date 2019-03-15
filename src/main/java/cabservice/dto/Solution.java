@@ -1,8 +1,10 @@
-package concurrency.cabsearchservice.dto;
+package cabservice.dto;
 
-import concurrency.cabsearchservice.constants.SearchEngineConstants;
-import concurrency.cabsearchservice.data.Cab;
-import java.util.*;
+
+import cabservice.constants.SearchEngineConstants;
+import cabservice.data.Cab;
+
+import java.util.List;
 
 public class Solution {
 

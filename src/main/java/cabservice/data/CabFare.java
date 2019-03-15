@@ -1,4 +1,4 @@
-package concurrency.cabsearchservice.data;
+package cabservice.data;
 
 public class CabFare {
 

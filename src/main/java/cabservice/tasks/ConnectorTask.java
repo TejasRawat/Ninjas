@@ -1,8 +1,8 @@
-package concurrency.cabsearchservice.tasks;
+package cabservice.tasks;
 
-import concurrency.cabsearchservice.connectors.Connector;
-import concurrency.cabsearchservice.dto.SearchRequest;
-import concurrency.cabsearchservice.dto.SearchRespone;
+import cabservice.connectors.Connector;
+import cabservice.dto.SearchRequest;
+import cabservice.dto.SearchRespone;
 
 import java.util.concurrent.Callable;
 

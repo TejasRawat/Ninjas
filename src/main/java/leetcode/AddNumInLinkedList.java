@@ -14,54 +14,74 @@ package leetcode;
 
 public class AddNumInLinkedList {
     public static void main(String args[]) {
+        ListNode l3 = new ListNode(3, null);
+        ListNode l2 = new ListNode(4, l3);
+        ListNode l1 = new ListNode(2, l2);
 
-        Node l3 = new Node(3, null);
-        Node l2 = new Node(4, l3);
-        Node l1 = new Node(2, l2);
+        ListNode p3 = new ListNode(4, null);
+        ListNode p2 = new ListNode(6, p3);
+        ListNode p1 = new ListNode(5, p2);
 
-        Node p3 = new Node(4, null);
-        Node p2 = new Node(6, p3);
-        Node p1 = new Node(5, p2);
-
-        Node sumNode = sumTwoNode(l1, p1);
+        ListNode sumListNode = sumTwoNode(l1, p1);
 
     }
 
-    private static Node sumTwoNode(Node firstNode, Node secondNode) {
-        int sizeFirstNode = getListSize(firstNode);
-        int sizeSecondNode = getListSize(secondNode);
-        Node smallNode = sizeFirstNode > sizeSecondNode ? firstNode : secondNode;
+    private static ListNode sumTwoNode(ListNode l1, ListNode l2) {
+        ListNode res = null;
+        ListNode prev = null;
+        ListNode temp = null;
+        int carry = 0, sum;
 
-        Node sumNode = new Node();
+        while (l1 != null || l2 != null)
+        {
+            sum = carry + (l1 != null ? l1.val : 0)
+                    + (l2 != null ? l2.val : 0);
+            carry = (sum >= 10) ? 1 : 0;
+            sum = sum % 10;
+            temp = new ListNode(sum);
 
-        return null;
-    }
+            if (res == null) {
+                res = temp;
+            } else {
+                prev.next = temp;
+            }
 
-
-    private static int getListSize(Node node) {
-        int len = 0;
-        Node temp = node;
-        while (null != temp) {
-            len++;
-            temp = temp.next;
+            prev = temp;
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
         }
-        return len;
+
+        if (carry > 0) {
+            temp.next = new ListNode(carry);
+        }
+
+        return res;
     }
+
 }
 
-class Node {
-    int data;
-    Node next;
+class ListNode {
+    int val;
+    ListNode next;
 
-    public Node(int data, Node next) {
-        this.data = data;
+    public ListNode(int val, ListNode next) {
+        this.val = val;
         this.next = next;
+    }
+
+    public ListNode(int val) {
+        this.val = val;
+        this.next = null;
     }
 
     @Override
     public String toString() {
-        return "Node{" +
-                "data=" + data +
+        return "ListNode{" +
+                "val=" + val +
                 ", next=" + next +
                 '}';
     }

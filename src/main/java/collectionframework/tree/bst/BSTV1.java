@@ -5,7 +5,7 @@ package collectionframework.tree.bst;
  */
 public class BSTV1 {
 
-    /*Node root = null;
+    /*ListNode root = null;
 
     ArrayList<Integer> listPreOrder = new ArrayList<Integer>();
     ArrayList<Integer> listInOrder = new ArrayList<Integer>();
@@ -40,12 +40,12 @@ public class BSTV1 {
             System.err.println("Empty Tree");
         } else {
 
-            Queue<Node> queue = new LinkedList<Node>();
+            Queue<ListNode> queue = new LinkedList<ListNode>();
             queue.add(root);
 
             while (!queue.isEmpty()) {
 
-                Node currentNode = queue.peek();
+                ListNode currentNode = queue.peek();
                 list.add(currentNode.data);
 
                 if (currentNode.left != null) {
@@ -87,7 +87,7 @@ public class BSTV1 {
      * @param data
      * @return
      *//*
-    private Node insertInBST(Node root, int data) {
+    private ListNode insertInBST(ListNode root, int data) {
 
         if (root == null) {
             root = getNewNode(data);
@@ -110,7 +110,7 @@ public class BSTV1 {
      *//*
     public void insertItrInBST(int num) {
 
-        Node temp = root, parent = root;
+        ListNode temp = root, parent = root;
 
         if (root == null) {
             root = getNewNode(num);
@@ -125,7 +125,7 @@ public class BSTV1 {
                 }
             }
 
-            Node newNode = getNewNode(num);
+            ListNode newNode = getNewNode(num);
             if (num <= parent.data) {
                 parent.left = newNode;
             } else {
@@ -137,9 +137,9 @@ public class BSTV1 {
     *//*
      *
      *//*
-    private Node getNewNode(int data) {
+    private ListNode getNewNode(int data) {
 
-        Node temp = new Node();
+        ListNode temp = new ListNode();
         temp.data = data;
         temp.left = null;
         temp.right = null;
@@ -153,7 +153,7 @@ public class BSTV1 {
      * @param num
      * @return
      *//*
-    private boolean searchInBST(Node root, int num) {
+    private boolean searchInBST(ListNode root, int num) {
 
         boolean flag = false;
 
@@ -182,12 +182,12 @@ public class BSTV1 {
      * @param num
      * @return
      *//*
-    private boolean searchItrInBST(Node root, int num) {
-        Queue<Node> queue = new LinkedList<Node>();
+    private boolean searchItrInBST(ListNode root, int num) {
+        Queue<ListNode> queue = new LinkedList<ListNode>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            Node currntNode = queue.peek();
+            ListNode currntNode = queue.peek();
 
             if (currntNode.data == num) {
                 return true;
@@ -207,7 +207,7 @@ public class BSTV1 {
     *//*
      *
      *//*
-    private void getPreOrder(Node root) {
+    private void getPreOrder(ListNode root) {
 
 
         if (root == null) {
@@ -225,7 +225,7 @@ public class BSTV1 {
     *//*
      *
      *//*
-    private void getInOrder(Node root) {
+    private void getInOrder(ListNode root) {
 
         if (root == null) {
             return;
@@ -242,7 +242,7 @@ public class BSTV1 {
     *//*
      *
      *//*
-    private void getPostOrder(Node root) {
+    private void getPostOrder(ListNode root) {
 
         if (root == null) {
             return;
@@ -259,7 +259,7 @@ public class BSTV1 {
 
         int min = root.data;
 
-        Node temp = root;
+        ListNode temp = root;
 
         while (temp.left != null) {
             temp = temp.left;
@@ -270,7 +270,7 @@ public class BSTV1 {
     }
 
     @SuppressWarnings("unused")
-    private int findMin(Node root) {
+    private int findMin(ListNode root) {
 
         int min = 0;
 
@@ -278,7 +278,7 @@ public class BSTV1 {
         } else if (root.left == null) {
             min = root.data;
         } else {
-            Node temp = root;
+            ListNode temp = root;
             while (temp.left != null) {
                 temp = temp.left;
             }
@@ -294,7 +294,7 @@ public class BSTV1 {
 
         int max = root.data;
 
-        Node temp = root;
+        ListNode temp = root;
 
         while (temp.right != null) {
             temp = temp.right;
@@ -311,7 +311,7 @@ public class BSTV1 {
     }
 
     @SuppressWarnings("unused")
-    private Node deleteNode(Node root, int data) {
+    private ListNode deleteNode(ListNode root, int data) {
 
 		*//*if(root == null){
 			return root;
@@ -324,17 +324,17 @@ public class BSTV1 {
 				root = null;
 				return root;
 			}else if(root.left == null){
-				Node temp = root;
+				ListNode temp = root;
 				root = root.right;
 				temp = null;
 				return root;
 			}else if(root.right == null){
-				Node temp = root;
+				ListNode temp = root;
 				root = root.left;
 				temp = null;
 				return root;
 			}else{
-				Node temp = findMin(root.right);
+				ListNode temp = findMin(root.right);
 			}
 
 		}*//*
@@ -349,11 +349,11 @@ public class BSTV1 {
 
     }
 
-    private int getAncesterNode(Node root, int value) {
+    private int getAncesterNode(ListNode root, int value) {
 
-        Node currentNode = searchElement(root, value);
+        ListNode currentNode = searchElement(root, value);
 
-        Node ansesterNode = root;
+        ListNode ansesterNode = root;
 
         while (ansesterNode != currentNode) {
 
@@ -368,8 +368,8 @@ public class BSTV1 {
         return ansesterNode.data;
     }
 
-    private static Node searchElement(Node root, int element) {
-        Node current = null;
+    private static ListNode searchElement(ListNode root, int element) {
+        ListNode current = null;
 
         if (root == null) {
             System.out.println("Empty Root");
@@ -384,7 +384,7 @@ public class BSTV1 {
         return current;
     }
 
-    public boolean isBST(Node root, int minVal, int maxVal) {
+    public boolean isBST(ListNode root, int minVal, int maxVal) {
         if (root == null) {
             return true;
         }
@@ -406,7 +406,7 @@ public class BSTV1 {
         return null;
     }
 
-    private int findHeight(Node root) {
+    private int findHeight(ListNode root) {
         if (root == null) {
             return -1;
         } else {

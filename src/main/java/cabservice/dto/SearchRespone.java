@@ -1,4 +1,5 @@
-package concurrency.cabsearchservice.dto;
+package cabservice.dto;
+
 
 public class SearchRespone {
 

@@ -1,4 +1,4 @@
-package concurrency.cabsearchservice.constants;
+package cabservice.constants;
 
 public class SearchEngineConstants {
 

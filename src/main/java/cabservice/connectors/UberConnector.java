@@ -1,8 +1,8 @@
-package concurrency.cabsearchservice.connectors;
+package cabservice.connectors;
 
-import concurrency.cabsearchservice.constants.SearchEngineConstants;
-import concurrency.cabsearchservice.dto.SearchRequest;
-import concurrency.cabsearchservice.dto.SearchRespone;
+import cabservice.constants.SearchEngineConstants;
+import cabservice.dto.SearchRequest;
+import cabservice.dto.SearchRespone;
 
 public class UberConnector extends BaseConnector {
 

@@ -1,13 +1,14 @@
-package concurrency.cabsearchservice.util;
+package cabservice.util;
 
-import concurrency.cabsearchservice.connectors.GrabConnector;
-import concurrency.cabsearchservice.connectors.OlaConnector;
-import concurrency.cabsearchservice.connectors.UberConnector;
-import concurrency.cabsearchservice.constants.SearchEngineConstants;
-import concurrency.cabsearchservice.dto.SearchRequest;
-import concurrency.cabsearchservice.tasks.ConnectorTask;
+import cabservice.connectors.GrabConnector;
+import cabservice.connectors.OlaConnector;
+import cabservice.connectors.UberConnector;
+import cabservice.constants.SearchEngineConstants;
+import cabservice.dto.SearchRequest;
+import cabservice.tasks.ConnectorTask;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConnectorUtilImpl implements ConnectorUtil {
 

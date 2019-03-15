@@ -1,6 +1,7 @@
 -----------------------------------------------------------------
 0. Understand Thread Pool executer & Future object aggregation
 1. Integrate lombock for builder pattern (One of the connector)
+
 2. Integrate redis for cache reading (Define structure)
 3. Integrate Kafka for expired search (BG search)
 6. Integrate Hystrix (for upstream dependent thing)

@@ -1,6 +1,4 @@
-package concurrency.cabsearchservice.data;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package cabservice.data;
 
 public class Cab {
 

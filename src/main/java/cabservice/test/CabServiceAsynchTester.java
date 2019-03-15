@@ -1,10 +1,10 @@
-package concurrency.cabsearchservice.test;
+package cabservice.test;
 
 
-import concurrency.cabsearchservice.dto.SearchRequest;
-import concurrency.cabsearchservice.dto.SearchRespone;
-import concurrency.cabsearchservice.service.SearchService;
-import concurrency.cabsearchservice.service.SearchServiceImpl;
+import cabservice.dto.SearchRequest;
+import cabservice.dto.SearchRespone;
+import cabservice.service.SearchService;
+import cabservice.service.SearchServiceImpl;
 
 public class CabServiceAsynchTester {
     public static void main(String args[]) {

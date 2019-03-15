@@ -58,7 +58,7 @@ public class Node {
             rightVal = Integer.MAX_VALUE;
         }
 
-        return "Node{" +
+        return "ListNode{" +
                 "data=" + data +
                 ", left=" + leftVal +
                 ", right=" + rightVal +
